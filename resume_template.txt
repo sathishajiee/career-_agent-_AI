@@ -1,0 +1,7 @@
+Name: {name}
+Email: {email}
+Skills: {skills}
+Experience: {experience}
+
+Job Role Applied: {job_role}
+ATS Optimized Keywords: {keywords}

@@ -1,0 +1,16 @@
+{
+  "data analyst": {
+    "skills": ["SQL", "Python", "Power BI", "Statistics"],
+    "courses": [
+      "https://www.coursera.org/specializations/data-analytics",
+      "https://www.youtube.com/watch?v=ua-CiDNNj30"
+    ]
+  },
+  "web developer": {
+    "skills": ["HTML", "CSS", "JavaScript", "React"],
+    "courses": [
+      "https://www.freecodecamp.org/learn",
+      "https://www.youtube.com/watch?v=PkZNo7MFNFg"
+    ]
+  }
+}
