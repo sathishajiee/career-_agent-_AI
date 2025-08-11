@@ -2,3 +2,5 @@ openai
 streamlit
 python-dotenv
 groq
+pymupdf
+
