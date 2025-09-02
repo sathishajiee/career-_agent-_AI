@@ -6,7 +6,11 @@ from utils import (
     get_job_preparation_guide, get_skill_gap, optimize_resume
 )
 # Display header/banner image
-st.image("assets/bg.png", use_container_width=True)
+st.image(
+    "https://raw.githubusercontent.com/your-username/your-repo/main/assets/bg.png",
+    use_container_width=True
+)
+
 
 # App title
 st.title("🚀 Career Agent AI")
@@ -164,4 +168,5 @@ elif page == "ℹ️ About":
 
     """)
     st.markdown('</div>', unsafe_allow_html=True)
+
 
