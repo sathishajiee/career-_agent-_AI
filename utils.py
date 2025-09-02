@@ -4,7 +4,11 @@ from PyPDF2 import PdfReader
 from fpdf import FPDF
 
 # Initialize Groq client using environment variable
-client = Client(api_key=os.environ.get("GROQ_API_KEY"))
+import streamlit as st
+from groq import Client
+
+client = Client(api_key=st.secrets["GORK_API_KEY"])
+
 
 # ---------------- Text Extraction from PDF ----------------
 def extract_text_from_pdf(uploaded_file):
@@ -81,5 +85,6 @@ def optimize_resume(job_description, resume_text):
         temperature=0.7
     )
     return response.choices[0].message.content
+
 
 
