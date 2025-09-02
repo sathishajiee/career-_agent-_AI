@@ -1,14 +1,18 @@
+import os, json, tempfile
 from groq import Groq
 from dotenv import load_dotenv
-import os, json, tempfile
 import fitz  # PyMuPDF
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 
-# 🔹 Load API key from .env
+# 🔹 Load environment variables from .env (local dev)
 load_dotenv()
+
+# 🔹 Get API key (works for both local & Streamlit Cloud)
 api_key = os.getenv("GROQ_API_KEY")
+if not api_key:
+    raise ValueError("❌ Missing GROQ_API_KEY. Please set it in .env (local) or in Streamlit Secrets (cloud).")
 
 # 🔹 Initialize Groq client
 client = Groq(api_key=api_key)
@@ -74,7 +78,6 @@ def get_learning_resources(domain):
                     "link": f"https://www.youtube.com/results?search_query={query}"
                 })
         return resources
-
 
 # ✅ Job Preparation Guide
 def get_job_preparation_guide(job_title):
@@ -203,5 +206,3 @@ def generate_modern_cv(data, output_file="Modern_CV.pdf"):
 
     c.save()
     return output_file
-
-    
