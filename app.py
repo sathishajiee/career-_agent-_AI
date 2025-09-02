@@ -5,6 +5,12 @@ from utils import (
     get_domain_recommendation, get_learning_resources,
     get_job_preparation_guide, get_skill_gap, optimize_resume
 )
+# Display header/banner image
+st.image("assets/bg.png", use_container_width=True)
+
+# App title
+st.title("🚀 Career Agent AI")
+
 
 # ✅ Page Config
 st.set_page_config(page_title="Career AI Agent", layout="wide")
@@ -158,3 +164,4 @@ elif page == "ℹ️ About":
 
     """)
     st.markdown('</div>', unsafe_allow_html=True)
+
