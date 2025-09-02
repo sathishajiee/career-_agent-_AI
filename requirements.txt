@@ -1,14 +1,12 @@
-openai
-streamlit
-python-dotenv
-groq
-pymupdf
-reportlab
 streamlit
 groq
 PyPDF2
 fpdf
 python-dotenv
+pandas
+numpy
+
+
 
 
 
