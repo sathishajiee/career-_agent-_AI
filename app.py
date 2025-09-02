@@ -18,14 +18,10 @@ st.title("🚀 Career Agent AI")
 
 # ✅ Page Config
 st.set_page_config(page_title="Career AI Agent", layout="wide")
-
 # ✅ Background Image Setup
-def get_base64_of_image(image_file):
-    with open(image_file, "rb") as img:
-        return base64.b64encode(img.read()).decode()
-
-image_path = r"C:\Users\Yashvanth\OneDrive\Pictures\AI-in-Career-Counseling_2.jpg"
-base64_image = get_base64_of_image(image_path)
+#return base64.b64encode(img.read()).decode()
+#image_path = r"C:\Users\Yashvanth\OneDrive\Pictures\AI-in-Career-Counseling_2.jpg"
+#base64_image = get_base64_of_image(image_path)***
 
 # ✅ Global CSS Styling
 st.markdown(f"""
@@ -168,5 +164,6 @@ elif page == "ℹ️ About":
 
     """)
     st.markdown('</div>', unsafe_allow_html=True)
+
 
 
