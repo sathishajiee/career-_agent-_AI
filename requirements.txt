@@ -4,5 +4,11 @@ python-dotenv
 groq
 pymupdf
 reportlab
+streamlit
+groq
+PyPDF2
+fpdf
+python-dotenv
+
 
 
