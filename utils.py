@@ -15,8 +15,7 @@ def get_groq_client():
         st.error("🚨 Missing GROQ_API_KEY in Streamlit secrets.")
         return None
 
-    return Client(api_key=api_key)
-
+    return Client(api_key=api_key) 
 
 # ----------------- PDF Text Extraction -----------------
 def extract_text_from_pdf(uploaded_file):
@@ -105,4 +104,5 @@ def optimize_resume(job_description, resume_text):
         temperature=0.7
     )
     return response.choices[0].message.content.strip()
+
 
