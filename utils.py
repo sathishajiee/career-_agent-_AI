@@ -1,6 +1,6 @@
 import os
 import streamlit as st
-from groq import Client
+from groq import Groq
 from PyPDF2 import PdfReader
 from fpdf import FPDF
 
@@ -9,11 +9,17 @@ def get_groq_client():
     """
     Returns a Groq client using the API key stored in Streamlit secrets or environment variables.
     """
-    api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
+    api_key = None
+    try:
+        api_key = st.secrets["GROQ_API_KEY"]
+    except Exception:
+        api_key = os.getenv("GROQ_API_KEY")
+
     if not api_key:
-        st.error("🚨 Missing GROQ_API_KEY. Please add it to .streamlit/secrets.toml or set as environment variable.")
+        st.error("🚨 Missing GROQ_API_KEY. Please add it to Streamlit secrets or environment variable.")
         return None
-    return Client(api_key=api_key)
+    
+    return Groq(api_key=api_key)
 
 # ----------------- PDF Text Extraction -----------------
 def extract_text_from_pdf(uploaded_file):
@@ -47,7 +53,7 @@ def get_domain_recommendation(skills, interests):
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7
     )
-    return response.choices[0].message["content"].strip()
+    return response.choices[0].message.content.strip()
 
 def get_learning_resources(domain):
     client = get_groq_client()
@@ -60,7 +66,7 @@ def get_learning_resources(domain):
         temperature=0.7
     )
     resources = []
-    for line in response.choices[0].message["content"].split("\n"):
+    for line in response.choices[0].message.content.split("\n"):
         if line.strip():
             parts = line.split(" - ")
             if len(parts) == 2:
@@ -77,7 +83,7 @@ def get_job_preparation_guide(job_title):
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7
     )
-    return response.choices[0].message["content"].strip()
+    return response.choices[0].message.content.strip()
 
 def get_skill_gap(target_job, current_skills):
     client = get_groq_client()
@@ -89,7 +95,7 @@ def get_skill_gap(target_job, current_skills):
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7
     )
-    return response.choices[0].message["content"].strip()
+    return response.choices[0].message.content.strip()
 
 def optimize_resume(job_description, resume_text):
     client = get_groq_client()
@@ -101,4 +107,4 @@ def optimize_resume(job_description, resume_text):
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7
     )
-    return response.choices[0].message["content"].strip()
+    return response.choices[0].message.content.strip()
