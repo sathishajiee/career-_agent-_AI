@@ -7,19 +7,16 @@ from fpdf import FPDF
 # ----------------- Groq Client -----------------
 def get_groq_client():
     """
-    Returns a Groq client using the API key stored in Streamlit secrets or environment variables.
+    Returns a Groq client using the API key stored in Streamlit secrets.
     """
-    api_key = None
     try:
         api_key = st.secrets["GROQ_API_KEY"]
-    except Exception:
-        api_key = os.getenv("GROQ_API_KEY")
-
-    if not api_key:
-        st.error("🚨 Missing GROQ_API_KEY. Please add it to Streamlit secrets or environment variable.")
+    except KeyError:
+        st.error("🚨 Missing GROQ_API_KEY in Streamlit secrets.")
         return None
-    
-    return Groq(api_key=api_key)
+
+    return Client(api_key=api_key)
+
 
 # ----------------- PDF Text Extraction -----------------
 def extract_text_from_pdf(uploaded_file):
@@ -108,3 +105,4 @@ def optimize_resume(job_description, resume_text):
         temperature=0.7
     )
     return response.choices[0].message.content.strip()
+
